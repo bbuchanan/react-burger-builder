@@ -2,6 +2,14 @@ import React, {Component} from 'react'
 import CheckoutSummary from '../../components/Order/CheckoutSummary/CheckoutSummary'
 
 class Checkout extends Component {
+  checkoutCancelledHandler = () => {
+    this.props.history.goBack()
+  }
+
+  checkoutContinuedHandler = () => {
+    this.props.history.replace('/checkout/contact-data')
+  }
+
   render () {
     let state = {
       ingredients: {
@@ -13,7 +21,9 @@ class Checkout extends Component {
     }
     return (
       <div>
-        <CheckoutSummary ingredients={state.ingredients} />
+        <CheckoutSummary ingredients={state.ingredients}
+          checkoutCancelled={this.checkoutCancelledHandler}
+          checkoutContinued={this.checkoutContinuedHandler} />
       </div>
     )
   }
